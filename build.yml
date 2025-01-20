@@ -9,7 +9,9 @@ phases:
       - echo "No build commands needed for static files"
   post_build:
     commands:
-      - echo "Preparing files for deployment"
+      - echo "Deploying to S3..."
+      - aws s3 sync ./ s3://my-static-website-bucket/ --delete
+
 artifacts:
   files:
-    - '**/*'  
+    - '**/*'
